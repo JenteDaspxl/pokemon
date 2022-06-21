@@ -2,17 +2,22 @@
     <div class="pokemonDetails">
         <img class="pokemonImage" :src=url alt="pokemonImage">
         <div class="details">
+            <div class="test">
+                <div class="name">
+                {{name}}
+                </div>
+                <p class=id>nr: {{id}}</p>
+            </div>
+            <div class="abilities">
+                <div class="ability" v-for="(type, index) in types"
+                v-bind:key="index"
+                v-bind:type="type">
+                <div class="abilityName" v-bind:id="type.type.name">{{type.type.name}}
+                </div>
+                </div>
+                <router-link :to="`/detailsView/${id -1}`" ><img class="imageIcon" src="../assets/detailIcon.png"/></router-link>
+            </div>
             
-            <p class="title">{{name}}</p>
-            <p class="nr">Nr.{{id}}</p>
-        </div>
-        <div class="">
-            <p :id="type.type.name" v-for="(type, index) in types"
-            v-bind:key="index"
-            v-on:vnodeMounted="setColor(type, index)"
-            v-bind:type="type">
-            {{type.type.name}}
-            </p>
         </div>
     </div>
 </template>
@@ -29,28 +34,19 @@ export default defineComponent({
   props: ["index", "pokemon"],
   data() {
     return {
-        currentColor: "rgb(69,146,195)",
         name: this?.pokemon?.name,
         id: this?.pokemon?.id,
         url: this?.pokemon?.sprites?.front_default,
-        types: this?.pokemon?.types
+        types: this?.pokemon?.types,
+
+        post: {
+            id: 1,
+        }
         
     }
   },
 
   methods: {
-
-    setColor(type:any) {
-        if(type == "water") {
-            this.currentColor = "rgb(69,146,195)"
-        }else {
-            this.currentColor = "rgb(123,98,163)"
-        }
-        console.log(type.type.name)
-
-        document.getElementById(type.type.name)?.style.background == this.currentColor
-        
-    }
   }
   
 });
@@ -61,41 +57,89 @@ export default defineComponent({
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
+        
         height: 6rem;
         margin-bottom: 1rem;
         border-radius: 7px;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
     .pokemonImage {
+        display: flex;
         width: 3rem;
         height: 3rem;
         padding: 0.8rem;
         padding-right: 1.5rem;
-
-    }
-    .title {
-        display: flex;
-        justify-content: left;
-        font-weight: bold;
-        margin: 0;
-        width: auto;
-    }
-    .nr {
-        display:flex;
-        justify-content: left;
-        margin: 0;
-        color: rgb(145, 150, 152)
     }
     .details {
         display: flex;
+        width: 100%;
+        justify-content: space-between;
+                
+    }
+    .test {
+        display: flex;
         flex-direction: column;
-        align-items: left;
-        
+    }
+    .name {
+        display: flex;
+        padding: 0.5rem;
+        padding-bottom: 0;
+        margin: 0;
+        font-weight: bold;
+        color: black;
+    }
+    .id {
+        padding-left: 0.5rem;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 0.3rem;
+        color: rgb(173, 176, 178);
+    }
+    
+    .abilities {
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
     }
 
-    .Water {
-        background: blue;
+    .ability {
+        padding-right: 0.4rem;
+
     }
+    .abilityName {
+        border-radius: 20%;
+        padding: 5px;
+        font-size: 0.8rem;
+        color: white
+
+
+    }
+    #grass {
+        background: rgb(149, 194, 77);
+    }
+    #water {
+        background: rgb(69, 146, 195);
+    }
+    #normal {
+        background: rgb(163, 172, 174);
+    }
+    #poison {
+        background: rgb(186, 126, 200);
+    }
+    #fire {
+        background: rgb(253, 125, 37);
+    }
+
+    .detailImage {
+        width: 0.25rem;
+    }
+    .imageIcon {
+        height: 0.4rem;
+    }
+
 
     
 

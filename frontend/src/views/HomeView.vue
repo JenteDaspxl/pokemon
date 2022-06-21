@@ -14,10 +14,10 @@
       </div>
     </div>
     <div class="buttonContainer">
-      <router-link class="team" to="/">
+      <router-link class="team" to="/MyTeam">
         <h2>Mijn team</h2>
       </router-link>
-      <router-link class="favorieten" to="/">
+      <router-link class="favorieten" to="/Favorit">
         <h2>Favorieten</h2>
     
       </router-link>

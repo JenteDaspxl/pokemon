@@ -3,24 +3,33 @@ import axios from "axios";
 
 export default createStore({
   state: {
-    pokemons: []
+    pokemons: [],
+    favorits: []
   },
   getters: {
     _getPokemons(state) {
       console.log(state.pokemons)
       return state.pokemons
-      
+    },
+
+    _getFavorits(state) {
+      return state.favorits;
     }
+    
   },
   mutations: {
+    _emptyFavorits(state) {
+      state.favorits = []
+    },
     _emptyPokemons(state) {
       state.pokemons = []
     },
     _addPokemons(state, payload) {
       state.pokemons = payload;
-      console.log(state.pokemons)
-
-      
+      console.log(state.pokemons)  
+    },
+    _addFavorit(state, payload) {
+      state.pokemons += payload;
     }
   },
   actions: {
@@ -31,7 +40,8 @@ export default createStore({
         state.commit("_addPokemons", respone.data)
       })
       .catch((error) => console.log(error));
-      }
+    },
+    
       
   },
   modules: {
