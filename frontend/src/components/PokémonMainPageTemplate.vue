@@ -22,9 +22,6 @@
     </div>
 </template>
 
-
-
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 require('../css/typeBackground.css');
@@ -53,6 +50,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+    
     .pokemonDetails {
         display: flex;
         flex-direction: row;

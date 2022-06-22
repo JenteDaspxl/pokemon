@@ -46,6 +46,7 @@ export default defineComponent({
   data() {
     return {
       pokemons: []
+      
     }
   },
   methods: {
